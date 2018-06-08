@@ -1,13 +1,4 @@
 module.exports = {
-    // houses: (req, res, next)=> {
-    //     const connection = req.app.get('db');
-    //     connection.get_houses()
-    //         .then( (houses)=> res.status(200).send(houses) )
-    //         .catch( ()=> res.status(500).send() );
-
-
-    // },
-
     addUser: (req, res, next)=> {
         const connection = req.app.get('db');
         const { userName, password} = req.body;
@@ -24,6 +15,14 @@ module.exports = {
             .catch( (err)=> res.status(500).send() );
     },
 
+    getPosts: (req, res, next)=> {
+        const connection = req.app.get('db');
+        connection.get_posts_not_user([req.query.userid])
+            .then( (posts)=> res.status(200).send(posts) )
+            .catch( ()=> res.status(500).send() );
+
+
+    },
 
     // deleteHouse: (req, res, next)=> {
     //     const connection = req.app.get('db');
