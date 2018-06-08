@@ -31,6 +31,14 @@ export default class Auth extends Component {
         }).then(() => this.props.history.push('/dashboard'))
     }
 
+    login(){
+        let {userName, password } = this.state;
+        axios.post('/api/login',
+        {userName: userName,
+        password: password
+        }).then(() => this.props.history.push('/dashboard'))
+    }
+
     render() {
         return (
             <div className='Auth'>
@@ -38,7 +46,7 @@ export default class Auth extends Component {
 
                 <p> Password: <input type='' className='' onChange={ ( e ) => this.updatePassword( e.target.value ) }/> </p>
 
-                <p><button>Login</button> <button onClick={()=>this.addUser()}>Register</button></p>
+                <p><button onClick={()=>this.login()}>Login</button> <button onClick={()=>this.addUser()}>Register</button></p>
             </div> 
         )
     }
