@@ -31,7 +31,7 @@ class Auth extends Component {
         {userName: userName,
         password: password
         }).then(() => this.props.history.push('/dashboard'))
-        .then(()=> this.props.updateDisplayName())
+        .then( results => this.props.updateDisplayName(results.data[0].id, results.data[0].username, results.data[0].profile_pic))
     }
 
     login(){
@@ -39,8 +39,9 @@ class Auth extends Component {
         axios.post('/api/login',
         {userName: userName,
         password: password
-        }).then(() => this.props.history.push('/dashboard'))
-        .then(()=> this.props.updateDisplayName())
+        }).then(results=> this.props.updateDisplayName(results.data[0].id, results.data[0].username, results.data[0].profile_pic))
+        .then(() => this.props.history.push('/dashboard'))
+        
     }
 
     render() {

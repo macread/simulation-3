@@ -11,8 +11,8 @@ export default function reducer(state = initialState, action ) {
     switch (action.type){
 
         case UPDATE_DISPLAY_NAME: 
-            const { id, username, password } = action.payload
-            return Object.assign({}, state, { id: id, userame: username, password: password })
+            const { id, username, profilePic } = action.payload
+            return Object.assign({}, state, { id: id, username: username, profilePic: profilePic })
 
         default:
         return state;
@@ -20,9 +20,9 @@ export default function reducer(state = initialState, action ) {
 
 }
 
-export function updateDisplayName(id, username, password){
+export function updateDisplayName(id, username, profilePic){
     return {
         type: UPDATE_DISPLAY_NAME,
-        payload: {id: id, username: username, password: password}
+        payload: {id: id, username: username, profilePic: profilePic}
     }
 }
