@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { updateDisplayName } from './../../ducks/reducer'
 
-export default class Auth extends Component {
+class Auth extends Component {
     constructor() {
         super()
         
@@ -23,12 +25,13 @@ export default class Auth extends Component {
         })
     }
 
-    addUser(){
+    register(){
         let {userName, password } = this.state;
         axios.post('/api/user',
         {userName: userName,
         password: password
         }).then(() => this.props.history.push('/dashboard'))
+        .then(()=> this.props.updateDisplayName())
     }
 
     login(){
@@ -37,6 +40,7 @@ export default class Auth extends Component {
         {userName: userName,
         password: password
         }).then(() => this.props.history.push('/dashboard'))
+        .then(()=> this.props.updateDisplayName())
     }
 
     render() {
@@ -46,8 +50,10 @@ export default class Auth extends Component {
 
                 <p> Password: <input type='' className='' onChange={ ( e ) => this.updatePassword( e.target.value ) }/> </p>
 
-                <p><button onClick={()=>this.login()}>Login</button> <button onClick={()=>this.addUser()}>Register</button></p>
+                <p><button onClick={()=>this.login()}>Login</button> <button onClick={()=>this.register()}>Register</button></p>
             </div> 
         )
     }
 }
+
+export default connect(null, { updateDisplayName })(Auth)

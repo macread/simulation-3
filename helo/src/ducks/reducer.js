@@ -4,14 +4,15 @@ const initialState = {
     profilePic: 'https://robohash.org/schnlotnick?set=set3'
 }
 
-// const  = '';
+const UPDATE_DISPLAY_NAME = 'UPDATE_DISPLAY_NAME';
 
 export default function reducer(state = initialState, action ) {
 
     switch (action.type){
 
-        // case : 
-        //     return Object.assign({}, state, {: })
+        case UPDATE_DISPLAY_NAME: 
+            const { id, username, password } = action.payload
+            return Object.assign({}, state, { id: id, userame: username, password: password })
 
         default:
         return state;
@@ -19,9 +20,9 @@ export default function reducer(state = initialState, action ) {
 
 }
 
-// export function (){
-//     return {
-//         type: ,
-//         payload: 
-//     }
-// }
+export function updateDisplayName(id, username, password){
+    return {
+        type: UPDATE_DISPLAY_NAME,
+        payload: {id: id, username: username, password: password}
+    }
+}
