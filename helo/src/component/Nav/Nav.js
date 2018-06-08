@@ -16,6 +16,7 @@ function Nav(props) {
       <Link to={'/new'}> <button>New Post</button> </Link>
       <Link to={'/auth'}> <button>Logout</button> </Link>
       </p>
+      <hr />
     </div> 
   )
 }
